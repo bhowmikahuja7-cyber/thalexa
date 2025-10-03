@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Plans - Thalexa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      line-height: 1.6;
+      padding: 20px;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.03) 5%, transparent 20%),
+        radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 5%, transparent 20%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Logo */
+    .logo-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: auto;
+    }
+
+    /* Home Button */
+    .home-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+    }
+
+    .home-button a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(20, 20, 20, 0.9);
+      color: #D4AF37;
+      text-decoration: none;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .home-button a:hover {
+      background: linear-gradient(135deg, #D4AF37, #B8860B);
+      color: #0a0a0a;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Header Styles */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #D4AF37;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #D4AF37;
+      border-radius: 2px;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin: 40px 0 30px;
+      color: #D4AF37;
+      font-size: 2rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-header::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #D4AF37;
+      border-radius: 2px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      background: rgba(20, 20, 20, 0.8);
+      color: #ccc;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 30px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #D4AF37, #B8860B);
+      color: #0a0a0a;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Pricing Grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .pricing-card {
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Shadow effects for freelancer memberships */
+    .freelancer-starter {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .freelancer-professional {
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    }
+    
+    .freelancer-elite {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+    }
+    
+    /* Shadow effects for client memberships */
+    .client-free {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .client-featured {
+      box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+    }
+
+    .popular {
+      transform: scale(1.03);
+    }
+
+    .popular::after {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      background: #D4AF37;
+      color: #0a0a0a;
+      padding: 5px 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transform: rotate(45deg);
+    }
+
+    .plan-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #D4AF37;
+      margin-bottom: 15px;
+    }
+
+    .plan-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #f5f5f5;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    .plan-description {
+      color: #ccc;
+      margin-bottom: 25px;
+      min-height: 60px;
+    }
+
+    .features {
+      margin-bottom: 30px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      color: #f5f5f5;
+    }
+
+    .feature i {
+      margin-right: 10px;
+      min-width: 20px;
+    }
+
+    .feature .fa-check-circle {
+      color: #D4AF37;
+    }
+    
+    .feature .fa-times-circle {
+      color: #ff3333;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #D4AF37, #B8860B);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Client Section */
+    .client-section {
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .client-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .client-header h2 {
+      font-size: 2rem;
+      color: #D4AF37;
+      margin-bottom: 10px;
+    }
+
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .client-card {
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .client-card h3 {
+      color: #D4AF37;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 60px;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      color: #D4AF37;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .faq {
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #ccc;
+      display: none;
+    }
+
+    .faq.active .faq-answer {
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: #D4AF37;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #f8e088;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .client-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tab-btn {
+        margin-bottom: 10px;
+      }
+      
+      .section-header {
+        font-size: 1.8rem;
+      }
+      
+      .home-button {
+        position: relative;
+        text-align: center;
+        margin-bottom: 20px;
+        top: 0;
+        right: 0;
+      }
+      
+      .logo-container {
+        position: relative;
+        text-align: center;
+        margin-bottom: 20px;
+        top: 0;
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo-container">
+      <a href="https://www.thalexa.in">
+        <img src="https://i.ibb.co/XxY3G2ww/thalexa-logo-final-removebg-preview.png" alt="Thalexa Logo">
+      </a>
+    </div>
+
+    <!-- Home Button -->
+    <div class="home-button">
+      <a href="https://www.thalexa.in">Home</a>
+    </div>
+
+    <header>
+      <h1>Membership Plans</h1>
+      <p>Choose the perfect plan</p>
+    </header>
+
+    <!-- Added "For Freelancers" header -->
+    <h2 class="section-header">For Freelancers</h2>
+
+    <div class="pricing-grid">
+      <!-- Starter Plan -->
+      <div class="pricing-card freelancer-starter">
+        <h3 class="plan-name">Starter</h3>
+        <div class="plan-price">₹99 <span>/6 months payment</span></div>
+        <p class="plan-description">Perfect for beginners starting their freelancing journey</p>
+        <div class="features">
+          <div class="feature"><i class="fas fa-check-circle"></i> Basic profile listing</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get featured on top along your freelancing category</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Standard support</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> More profile visibility for clients</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Access to basic projects</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Gets Security amount before starting of the project</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Get thalexa verified</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Priority support by Thalexa team</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Get your custom profile URL</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Gets featured on Thalexa's homepage website</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> 24/7 dedicated support by Thalexa's Team</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Higher Priority on exclusive high-budget projects</div>
+        </div>
+        <a href="https://tally.so/r/wAYbpz" class="btn">Take a Free Trial</a>
+      </div>
+
+      <!-- Professional Plan -->
+      <div class="pricing-card freelancer-professional popular">
+        <h3 class="plan-name">Professional</h3>
+        <div class="plan-price">₹649 <span>/ 6 months payment</span></div>
+        <p class="plan-description">For serious freelancers ready to grow</p>
+        <div class="features">
+          <div class="feature"><i class="fas fa-check-circle"></i> Basic profile listing</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get featured on top along your freelancing category</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Standard support</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> More profile visibility for clients</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Access to basic projects</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Gets Security amount before starting of the project</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get thalexa verified</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Priority support by Thalexa team</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Get your custom profile URL</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Gets featured on Thalexa's homepage website</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> 24/7 dedicated support by Thalexa's Team</div>
+          <div class="feature"><i class="fas fa-times-circle"></i> Higher Priority on exclusive high-budget projects</div>
+        </div>
+        <a href="https://tally.so/r/wAYbpz" class="btn">Take a Free Trial</a>
+      </div>
+
+      <!-- Elite Plan -->
+      <div class="pricing-card freelancer-elite">
+        <h3 class="plan-name">Elite</h3>
+        <div class="plan-price">₹899 <span>/6 months payment</span></div>
+        <p class="plan-description">For top-tier professionals seeking maximum exposure</p>
+        <div class="features">
+          <div class="feature"><i class="fas fa-check-circle"></i> Basic profile listing</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get featured on top along your freelancing category</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Standard support</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> More profile visibility for clients</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Access to basic projects</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Gets Security amount before starting of the project</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get thalexa verified</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Priority support by Thalexa team</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Get your custom profile URL</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Gets featured on Thalexa's homepage website</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> 24/7 dedicated support by Thalexa's Team</div>
+          <div class="feature"><i class="fas fa-check-circle"></i> Higher Priority on exclusive high-budget projects</div>
+        </div>
+        <a href="https://tally.so/r/wAYbpz" class="btn">Take a Free Trial</a>
+      </div>
+    </div>
+
+    <div class="client-section">
+      <div class="client-header">
+        <h2>For Clients</h2>
+      </div>
+      <div class="client-grid">
+        <div class="client-card client-free">
+          <h3>Basic Hiring</h3>
+          <div class="plan-price">Free</div>
+          <p class="plan-description">Post projects and hire freelancers with no additional fees</p>
+          <div class="features">
+            <div class="feature"><i class="fas fa-check-circle"></i> Post unlimited projects</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Access to all freelancers</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Basic messaging system</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Standard support</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Secure payment system</div>
+            <div class="feature"><i class="fas fa-times-circle"></i> Get projects highlighted on top</div>
+            <div class="feature"><i class="fas fa-times-circle"></i> After project support</div>
+            <div class="feature"><i class="fas fa-times-circle"></i> Dedicated account manager</div>
+          </div>
+          <a href="https://tally.so/r/mJj1QJ" class="btn">Get Started</a>
+        </div>
+        <div class="client-card client-featured">
+          <h3>Featured Listing</h3>
+          <div class="plan-price">₹899 <span>/3 months payment</span></div>
+          <p class="plan-description">Get your projects highlighted and attract top talent</p>
+          <div class="features">
+            <div class="feature"><i class="fas fa-check-circle"></i> Post unlimited projects</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Access to all freelancers</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Basic messaging system</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Standard support</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Secure payment system</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Get projects highlighted on top</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> After project support for 2 months</div>
+            <div class="feature"><i class="fas fa-check-circle"></i> Dedicated account manager</div>
+          </div>
+          <a href="https://tally.so/r/mJj1QJ" class="btn">Take a Free Trial</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq">
+        <div class="faq-question">
+          What payment methods do you accept? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          We accept UPI, credit/debit cards, net banking, and popular digital wallets.
+        </div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">
+          Is there any commission on projects? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          No! Thalexa has a zero-commission policy. You keep 100% of your earnings.
+        </div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">
+          Can I upgrade my plan later? <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes, you can upgrade your plan at any time. The difference in price will be charged.
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-links">
+        <a href="https://www.thalexa.in/privacy-policy.html">Privacy Policy</a>
+        <a href="https://www.thalexa.in/terms-and-conditions.html">Terms and Conditions</a>
+        <a href="https://www.thalexa.in/refund-policy.html">Refund Policy</a>
+        <a href="https://www.thalexa.in/#contact">Contact Us</a>
+      </div>
+      <p>© 2025 Thalexa. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faq = question.parentElement;
+        faq.classList.toggle('active');
+      });
+    });
+
+    // Tab functionality
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const freelancerSection = document.querySelector('.pricing-grid').parentNode;
+    const clientSection = document.querySelector('.client-section');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        if (btn.textContent === 'For Clients') {
+          freelancerSection.style.display = 'none';
+          clientSection.style.marginTop = '0';
+        } else {
+          freelancerSection.style.display = 'block';
+          clientSection.style.marginTop = '60px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

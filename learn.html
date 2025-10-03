@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thalexa Learn | Choose Your Skill</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(218, 165, 32, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(218, 165, 32, 0.05) 0%, transparent 20%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .corner-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+    
+    .corner-logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #DAA520;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 25px rgba(218, 165, 32, 0.4);
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    .logo-container i {
+      font-size: 50px;
+      color: #DAA520;
+    }
+
+    @keyframes pulse {
+      0% { 
+        transform: scale(1); 
+        box-shadow: 0 0 25px rgba(218, 165, 32, 0.4);
+      }
+      50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 40px rgba(218, 165, 32, 0.7);
+      }
+      100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 25px rgba(218, 165, 32, 0.4);
+      }
+    }
+
+    header h1 {
+      font-size: 3em;
+      font-weight: 700;
+      color: #DAA520;
+      margin-top: 20px;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, transparent, #DAA520, transparent);
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #ccc;
+      margin-top: 20px;
+      font-weight: 300;
+    }
+
+    .grid-container {
+      max-width: 1200px;
+      margin: 30px auto 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .skill-card {
+      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #f5f5f5;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #2a2a2a;
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, transparent, #DAA520, transparent);
+      transform: translateY(-5px);
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(218, 165, 32, 0.3);
+      border-color: #DAA520;
+    }
+
+    .skill-card:hover::before {
+      transform: translateY(0);
+    }
+
+    .skill-icon {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #DAA520;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.2);
+    }
+
+    .skill-title {
+      font-size: 1.1em;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-card:hover .skill-title {
+      color: #DAA520;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.95em;
+      color: #888;
+      background-color: rgba(10, 10, 10, 0.8);
+      border-top: 1px solid #2a2a2a;
+      margin-top: 40px;
+    }
+
+    footer span {
+      color: #DAA520;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5em;
+      }
+      
+      .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+      
+      .corner-logo {
+        top: 15px;
+        left: 15px;
+      }
+      
+      .corner-logo img {
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding: 60px 15px 30px;
+      }
+      
+      header h1 {
+        font-size: 2em;
+      }
+
+      .logo-container {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .logo-container i {
+        font-size: 40px;
+      }
+
+      .skill-card {
+        padding: 25px 15px;
+      }
+      
+      .corner-logo {
+        top: 10px;
+        left: 10px;
+      }
+      
+      .corner-logo img {
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner-logo">
+    <img src="https://i.ibb.co/XxY3G2ww/thalexa-logo-final-removebg-preview.png" alt="Thalexa Logo">
+  </div>
+
+  <header>
+    <div class="logo-container">
+      <i class="fas fa-crown"></i>
+    </div>
+    <h1>Thalexa Learn</h1>
+    <p>Master in-demand skills with our premium courses</p>
+  </header>
+
+  <section class="grid-container">
+
+    <a href="canvadesign.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+      <div class="skill-title">Canva Design</div>
+    </a>
+
+    <a href="videoediting.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-film"></i></div>
+      <div class="skill-title">Video Editing</div>
+    </a>
+
+    <a href="contentwriting.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-pen-fancy"></i></div>
+      <div class="skill-title">Content Writing</div>
+    </a>
+
+    <a href="promptengineering.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-robot"></i></div>
+      <div class="skill-title">AI & Prompt Engineering</div>
+    </a>
+
+    <a href="digitalmarketing.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-bullhorn"></i></div>
+      <div class="skill-title">Digital Marketing</div>
+    </a>
+
+    <a href="webdevelopment.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-code"></i></div>
+      <div class="skill-title">Web Development</div>
+    </a>
+
+    <a href="appdevelopment.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+      <div class="skill-title">App Development</div>
+    </a>
+
+    <a href="voiceover.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-microphone"></i></div>
+      <div class="skill-title">Voice Over</div>
+    </a>
+
+    <a href="graphicdesigner.html" class="skill-card">
+      <div class="skill-icon"><i class="fas fa-palette"></i></div>
+      <div class="skill-title">Graphic Design</div>
+    </a>
+
+  </section>
+ 
+  <footer>
+    © 2025 <span>Thalexa</span>. All rights reserved.
+  </footer>
+
+</body>
+</html>

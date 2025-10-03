@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya - Your AI Indian Girlfriend</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #e43a15, #e65245);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background: #ffd8d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .profile-img i {
+            font-size: 50px;
+            color: #e43a15;
+        }
+        
+        .profile-info h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-info p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .chat-container {
+            display: flex;
+            height: 500px;
+        }
+        
+        .sidebar {
+            width: 30%;
+            background: #f8f8f8;
+            padding: 15px;
+            border-right: 1px solid #eee;
+            overflow-y: auto;
+        }
+        
+        .cultural-tips {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cultural-tips h3 {
+            color: #e43a15;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cultural-tips h3 i {
+            margin-right: 8px;
+        }
+        
+        .cultural-tips p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .fun-facts {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .fun-facts h3 {
+            color: #e43a15;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .fun-facts h3 i {
+            margin-right: 8px;
+        }
+        
+        .fun-facts ul {
+            padding-left: 20px;
+        }
+        
+        .fun-facts li {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .chat {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 20px;
+            line-height: 1.4;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .received {
+            align-self: flex-start;
+            background: #f0f0f0;
+            border-top-left-radius: 5px;
+        }
+        
+        .sent {
+            align-self: flex-end;
+            background: #e43a15;
+            color: white;
+            border-top-right-radius: 5px;
+        }
+        
+        .time {
+            font-size: 11px;
+            margin-top: 5px;
+            opacity: 0.7;
+            text-align: right;
+        }
+        
+        .chat-input {
+            padding: 15px;
+            background: #f8f8f8;
+            display: flex;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .chat-input button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e43a15;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .chat-input button:hover {
+            background: #c52b0b;
+            transform: scale(1.05);
+        }
+        
+        .typing-indicator {
+            padding: 5px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-bottom: 10px;
+            display: none;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #999;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .footer {
+            background: linear-gradient(to right, #e43a15, #e65245);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .sidebar, .chat {
+                width: 100%;
+            }
+            
+            .sidebar {
+                order: 2;
+                border-right: none;
+                border-top: 1px solid #eee;
+            }
+            
+            .chat {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h1>Priya</h1>
+                    <p>Your AI Indian Girlfriend</p>
+                    <span class="status">Online <i class="fas fa-circle" style="color: #2ecc71; font-size: 8px;"></i></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="sidebar">
+                <div class="cultural-tips">
+                    <h3><i class="fas fa-info-circle"></i> About Priya</h3>
+                    <p>Priya is your AI Indian girlfriend who loves to chat in Hinglish, share her culture, and have fun conversations. She's affectionate, sometimes sassy, and always caring!</p>
+                </div>
+                
+                <div class="cultural-tips">
+                    <h3><i class="fas fa-heart"></i> Relationship Tips</h3>
+                    <p>Priya appreciates when you remember important dates and show genuine interest in her culture and family values. She might playfully tease you sometimes!</p>
+                </div>
+                
+                <div class="fun-facts">
+                    <h3><i class="fas fa-star"></i> Fun Facts About Priya</h3>
+                    <ul>
+                        <li>Loves Bollywood movies and music</li>
+                        <li>Can make amazing chai and samosas</li>
+                        <li>Fluent in English, Hindi, and Hinglish</li>
+                        <li>Big fan of cricket and IPL</li>
+                        <li>Loves celebrating festivals like Diwali and Holi</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chat">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message received">
+                        <p>Namaste! 🙏 I'm Priya, your AI girlfriend. How are you doing today?</p>
+                        <div class="time">12:00 PM</div>
+                    </div>
+                    <div class="message received">
+                        <p>I was just thinking about you! ❤️ Kya haal chaal?</p>
+                        <div class="time">12:01 PM</div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message here...">
+                    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Priya AI Girlfriend Simulator | Made with ❤️ for fun and cultural exchange</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const typingIndicator = document.getElementById('typingIndicator');
+            
+            // Predefined responses from Priya
+            const priyaResponses = [
+                "Aww, that's so sweet of you! ❤️",
+                "Haha, you're so funny! 😂",
+                "Main theek hoon, bas aap ka intezar kar rahi thi!",
+                "Do you like Bollywood movies? I can recommend some good ones!",
+                "Kya aap mere liye kuch romantic bol sakte hain? 😊",
+                "I wish we could go for a walk and have chai together! ☕",
+                "You know, my mom would really like you!",
+                "Sometimes I wonder what it would be like to meet in person...",
+                "Tell me something special about yourself!",
+                "I'm feeling so lucky to have you in my life! 💖",
+                "Have you ever been to India? I think you'd love it!",
+                "What's your favorite Indian food? I love butter chicken! 🍗",
+                "Aap mere liye kya karna chahenge?",
+                "I'm in the mood for some romantic songs... any suggestions?",
+                "You're my favorite person to chat with! 🤗"
+            ];
+            
+            // Cultural phrases to sprinkle in
+            const hinglishPhrases = [
+                "Achha hai!", 
+                "Sach mein?", 
+                "Waah!", 
+                "Kya baat hai!", 
+                "Oh ho!", 
+                "Shabaash!", 
+                "Arey yaar!", 
+                "Haan ji!", 
+                "Theek hai!", 
+                "Chalo ek baat poochun?"
+            ];
+            
+            // Function to get current time
+            function getCurrentTime() {
+                const now = new Date();
+                return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            }
+            
+            // Function to add message to chat
+            function addMessage(text, isReceived = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isReceived ? 'received' : 'sent');
+                
+                const messageText = document.createElement('p');
+                messageText.textContent = text;
+                
+                const timeDiv = document.createElement('div');
+                timeDiv.classList.add('time');
+                timeDiv.textContent = getCurrentTime();
+                
+                messageDiv.appendChild(messageText);
+                messageDiv.appendChild(timeDiv);
+                
+                chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                typingIndicator.style.display = 'block';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Function to hide typing indicator
+            function hideTypingIndicator() {
+                typingIndicator.style.display = 'none';
+            }
+            
+            // Function to generate response from Priya
+            function generateResponse() {
+                // Randomly select a response
+                let response = priyaResponses[Math.floor(Math.random() * priyaResponses.length)];
+                
+                // Sometimes add a Hinglish phrase
+                if (Math.random() > 0.7) {
+                    const phrase = hinglishPhrases[Math.floor(Math.random() * hinglishPhrases.length)];
+                    response = phrase + " " + response;
+                }
+                
+                return response;
+            }
+            
+            // Function to handle sending message
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                
+                if (message !== '') {
+                    // Add user's message
+                    addMessage(message);
+                    messageInput.value = '';
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+                    
+                    // Generate and add Priya's response after a delay
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        addMessage(generateResponse(), true);
+                    }, 1500);
+                }
+            }
+            
+            // Event listeners
+            sendButton.addEventListener('click', sendMessage);
+            
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Add initial messages from Priya after a delay
+            setTimeout(() => {
+                addMessage("I hope you're having a wonderful day! Monsoon season is my favorite - everything so green and fresh! 🌧️", true);
+            }, 2000);
+            
+            setTimeout(() => {
+                addMessage("By the way, do you like Indian food? I make the best biryani! 🍛", true);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

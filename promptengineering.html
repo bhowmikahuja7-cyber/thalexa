@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learn Prompt Engineering – Thalexa Learn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      margin: 0; 
+      font-family: 'Poppins', sans-serif; 
+      background: #0a0a0a; 
+      color: #f5f5f5; 
+    }
+    
+    header { 
+      text-align: center; 
+      padding: 80px 20px 50px; 
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a0a0a"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%231a1a1a" stroke-width="1"/></svg>');
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    }
+    
+    header h1 { 
+      font-size: 3.2em; 
+      font-weight: 700; 
+      color: #D4AF37; 
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    header h1::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #D4AF37;
+      border-radius: 2px;
+    }
+    
+    header p { 
+      font-size: 1.2em; 
+      color: #ccc; 
+      margin-top: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    section { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 60px 20px; 
+      position: relative;
+    }
+    
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      border-top: 2px solid #D4AF37;
+      border-left: 2px solid #D4AF37;
+      opacity: 0.5;
+    }
+    
+    section::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-bottom: 2px solid #D4AF37;
+      border-right: 2px solid #D4AF37;
+      opacity: 0.5;
+    }
+    
+    h2 { 
+      font-size: 1.8em; 
+      margin-bottom: 30px; 
+      color: #D4AF37; 
+      padding-left: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #D4AF37;
+    }
+    
+    .video-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 30px; 
+    }
+    
+    .video-card { 
+      background: rgba(20, 20, 20, 0.8); 
+      border-radius: 12px; 
+      padding: 20px; 
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: 0.3s ease; 
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .video-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      transform: translateY(-100%);
+      transition: transform 0.5s ease;
+    }
+    
+    .video-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.2);
+    }
+    
+    .video-card:hover::before {
+      transform: translateY(0);
+    }
+    
+    iframe { 
+      width: 100%; 
+      height: 200px; 
+      border-radius: 8px; 
+      border: none; 
+      background: #000;
+    }
+    
+    .video-title { 
+      font-weight: 600; 
+      font-size: 1em; 
+      margin-top: 15px; 
+      color: #f5f5f5; 
+      line-height: 1.5;
+    }
+    
+    .video-card:hover .video-title {
+      color: #D4AF37;
+    }
+    
+    footer { 
+      text-align: center; 
+      font-size: 0.9em; 
+      padding: 60px 20px; 
+      color: #999; 
+      background: #0c0c0c;
+      position: relative;
+    }
+    
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    }
+    
+    .gold-accent {
+      color: #D4AF37;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5em;
+      }
+      
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Thalexa Learn: <span class="gold-accent">Prompt Engineering</span></h1>
+    <p>Top Tutorials to Learn AI Prompt Engineering for Freelancers</p>
+  </header>
+
+  <section>
+    <h2>🤖 English Prompt Engineering Tutorials</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/LWiMwhDZ9as" allowfullscreen></iframe>
+        <div class="video-title">Learn Prompt Engineering: Full Beginner Crash Course (5 HOURS!)</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/bIxbpIwYTXI" allowfullscreen></iframe>
+        <div class="video-title">The ULTIMATE 2025 Guide to Prompt Engineering</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/5i2Hn8OG94o" allowfullscreen></iframe>
+        <div class="video-title">Prompt Engineering 2025 Full Course</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🤖 Hindi Prompt Engineering Tutorials</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/EbBUzkupmBk" allowfullscreen></iframe>
+        <div class="video-title">Prompt Engineering Full Course in Hindi 2024</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/9GyNIQ6-AbQ" allowfullscreen></iframe>
+        <div class="video-title">Prompt Engineering full Course | Hindi</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/mkiKUPqcFEs" allowfullscreen></iframe>
+        <div class="video-title">Generative AI and Prompt Engineering Full Course in Hindi</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 <span class="gold-accent">Thalexa</span>. All rights reserved.
+  </footer>
+
+</body>
+</html>

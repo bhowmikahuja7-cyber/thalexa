@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Activate Thalexa Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 500px;
+      background: rgba(20, 20, 20, 0.9);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      position: relative;
+    }
+    
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    }
+    
+    h2 {
+      color: #D4AF37;
+      margin-bottom: 15px;
+      font-size: 2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #D4AF37;
+      border-radius: 2px;
+    }
+    
+    p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    
+    .qr-container {
+      position: relative;
+      margin: 25px 0;
+      padding: 15px;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .qr-img {
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    
+    .qr-img:hover {
+      transform: scale(1.02);
+    }
+    
+    .upi {
+      font-weight: bold;
+      margin: 20px 0;
+      padding: 12px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 8px;
+      color: #D4AF37;
+      font-size: 1.1rem;
+      border-left: 3px solid #D4AF37;
+    }
+    
+    .dm-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #D4AF37, #B8860B);
+      color: #0a0a0a;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dm-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .dm-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+    
+    .dm-btn:hover::before {
+      left: 100%;
+    }
+    
+    .steps {
+      text-align: left;
+      margin: 25px 0;
+      padding: 0;
+    }
+    
+    .steps li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 30px;
+      list-style: none;
+    }
+    
+    .steps li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #D4AF37;
+      font-weight: bold;
+      background: rgba(212, 175, 55, 0.1);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .footer-note {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #999;
+      padding-top: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .gold-accent {
+      color: #D4AF37;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+        margin: 0 15px;
+      }
+      
+      .qr-img {
+        width: 220px;
+      }
+      
+      h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>💰 Activate Your Thalexa Profile</h2>
+    <p>Complete your registration by paying a nominal ₹1 fee to get listed on our platform within 24 hours.</p>
+    
+    <div class="steps">
+      <li>Scan the QR code below or use the UPI ID</li>
+      <li>Pay the ₹49 activation fee</li>
+      <li>Send payment screenshot via Instagram DM</li>
+      <li>Get your profile activated within 24 hours</li>
+    </div>
+
+    <div class="qr-container">
+      <img src="https://i.ibb.co/35Z5jh7j/Web-Photo-Editor.jpg" alt="Pay ₹1 via UPI QR" class="qr-img" />
+    </div>
+
+    <p class="upi">UPI ID: <strong>8517801653@fam</strong></p>
+    
+    <a href="https://www.instagram.com/bhowmik_thalexa" target="_blank" class="dm-btn">📸 DM Screenshot on Instagram</a>
+    
+    <div class="footer-note">
+      © 2025 <span class="gold-accent">Thalexa</span>. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

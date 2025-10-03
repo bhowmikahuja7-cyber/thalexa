@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thalexa – Freelance Marketplace | 0% Commission</title>
+  <meta name="description" content="Thalexa - 0% commission for freelancer. No service charges for clients, guaranteed security amount for freelancers, and post-project support for clients.">
+  <link rel="icon" href="https://i.ibb.co/KppHHbwP/thalexa-logo-final-removebg-preview.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+ <style>
+  :root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --card-bg: #1c1c1c; /* Changed to a dark color */
+    --text: #ffffff; /* Changed to white for dark background */
+    --text-light: #b0b0b0; /* Changed to light gray */
+    --gold: #D4AF37;
+    --gold-light: #F1E5AC;
+    --gold-dark: #B8860B;
+    --accent: #D4AF37;
+    --accent-hover: #B8860B;
+    --hire-btn: #D4AF37;
+    --hire-btn-hover: #B8860B;
+    --gradient-primary: linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 100%);
+    --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+  }
+ 
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ 
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--primary-bg); /* Changed body background to black */
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text); /* Set default text color to white */
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+  }
+ 
+  section, footer, .topbar {
+    width: 100%;
+    margin: 0;
+  }
+ 
+  .topbar {
+    background: var(--primary-bg);
+    color: var(--gold);
+    font-size: .95rem;
+    font-weight: 500;
+    text-align: right;
+    padding: .5rem 1.25rem;
+    border-bottom: 1px solid var(--gold-light);
+  }
+ 
+  /* header / nav */
+  header {
+    background: var(--gradient-primary);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+  }
+ 
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: rgba(212, 175, 55, 0.05);
+    transform: rotate(-15deg);
+    z-index: 0;
+  }
+ 
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo-image {
+    height: 50px;
+    width: auto;
+  }
+ 
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+  }
+ 
+  nav {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 10, 10, 0.9);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--gold-light);
+  }
+ 
+  nav a {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all .25s;
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    position: relative;
+  }
+ 
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+ 
+  nav a:hover {
+    color: var(--gold);
+  }
+ 
+  nav a:hover::after {
+    width: 80%;
+  }
+ 
+  nav a.active {
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+  }
+ 
+  nav a.active::after {
+    width: 80%;
+  }
+  
+  /* Join Now Button */
+  .join-button {
+    background: var(--gradient-gold);
+    color: #111;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .join-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+  }
+  
+  .join-button:active {
+    transform: translateY(1px);
+  }
+ 
+  /* categories */
+  .categories {
+    padding: 3rem 1rem;
+    text-align: center;
+    background: var(--primary-bg); /* Changed to a dark background */
+  }
+ 
+  .categories h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--gold); /* Changed heading to gold */
+    position: relative;
+    display: inline-block;
+  }
+ 
+  .categories h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+  }
+ 
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+ 
+  .category-card {
+    background: var(--card-bg);
+    padding: 1.1rem 1.4rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+    min-width: 180px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    position: relative;
+    border: 1px solid #333; /* Darker border */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text);
+  }
+ 
+  .category-card i {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+ 
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    color: var(--gold-dark);
+    border-color: var(--gold);
+  }
+ 
+  .category-card:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-gold);
+  }
+ 
+  .static-message {
+    text-align: center;
+    font-weight: 700;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: var(--secondary-bg); /* Adjusted background */
+    color: var(--gold);
+    border-radius: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--gold-light);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+ 
+  .static-message i {
+    font-size: 1.5rem;
+  }
+ 
+  /* freelancer list */
+  .freelancers {
+    padding: 3rem 1rem;
+    text-align: center;
+    background: var(--primary-bg); /* Changed to a dark background */
+  }
+ 
+  .freelancers h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--gold); /* Changed heading to gold */
+    position: relative;
+    display: inline-block;
+  }
+ 
+  .freelancers h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+  }
+ 
+  .freelancer-section, .freelancer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+ 
+  .freelancer-section {
+    display: none;
+  }
+ 
+  .freelancer-section.active {
+    display: flex;
+  }
+ 
+  .freelancer-list.hidden {
+    display: none;
+  }
+ 
+  .freelancer-card {
+    background: var(--card-bg);
+    width: 280px;
+    border-radius: 16px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+    transition: transform .25s;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333; /* Darker border */
+    color: var(--text);
+  }
+ 
+  .freelancer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-gold);
+  }
+ 
+  .freelancer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.12);
+    border-color: var(--gold-light);
+  }
+ 
+  .freelancer-card img, .freelancer-card video {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #444; /* Darker border */
+  }
+ 
+  .freelancer-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    margin: .4rem 0;
+    color: #fff; /* Changed to white */
+  }
+ 
+  .freelancer-card p {
+    font-size: .95rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+ 
+  .hire-now-btn, .upi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    font-family: 'Poppins', sans-serif;
+  }
+ 
+  .hire-now-btn {
+    margin-top: .75rem;
+    padding: .55rem 1.25rem;
+    font-size: .95rem;
+    color: #111;
+    background: var(--gradient-gold);
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+  }
+ 
+  .hire-now-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+  }
+ 
+  .hire-now-btn:active {
+    transform: translateY(1px) scale(.98);
+  }
+ 
+  .back-button {
+    display: none;
+    margin: 0 auto 1rem;
+    background: var(--gold); /* Changed to gold */
+    color: var(--primary-bg); /* Changed to black */
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: .6rem 1.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+  }
+ 
+  .back-button.show {
+    display: block;
+  }
+ 
+  .back-button:hover {
+    background: var(--gold-dark); /* Darker gold on hover */
+    color: var(--primary-bg);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  }
+ 
+  /* FAQ Section */
+  .faq-section {
+    padding: 4rem 1rem;
+    background: var(--primary-bg);
+    color: #fff;
+  }
+ 
+  .faq-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--gold);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+ 
+  .faq-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+  }
+ 
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+ 
+  .faq-item {
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--secondary-bg);
+    border: 1px solid var(--gold-light);
+  }
+ 
+  .faq-question {
+    padding: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--gold);
+  }
+ 
+  .faq-answer {
+    padding: 0 1.2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: var(--card-bg);
+    color: var(--text);
+  }
+ 
+  .faq-answer.active {
+    max-height: 300px;
+    padding: 1.2rem;
+  }
+ 
+  .faq-icon {
+    transition: transform 0.3s ease;
+  }
+ 
+  .faq-item.active .faq-icon {
+    transform: rotate(180deg);
+  }
+ 
+  /* Reviews Section */
+  .reviews-section {
+    padding: 4rem 1rem;
+    background: var(--primary-bg); /* Changed to a dark background */
+    text-align: center;
+  }
+ 
+  .reviews-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: var(--gold); /* Changed heading to gold */
+    position: relative;
+    display: inline-block;
+  }
+ 
+  .reviews-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+  }
+ 
+  .reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+ 
+  .review-card {
+    background: var(--card-bg);
+    width: 350px;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+    position: relative;
+    border: 1px solid #333; /* Darker border */
+    color: var(--text);
+  }
+ 
+  .review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-gold);
+  }
+ 
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+ 
+  .reviewer-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff; /* Changed to white */
+  }
+ 
+  .reviewer-role {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.2rem;
+  }
+ 
+  .review-rating {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+ 
+  .review-content {
+    font-style: italic;
+    color: var(--text-light); /* Adjusted color for better contrast */
+    line-height: 1.6;
+    position: relative;
+    padding: 0 0.5rem;
+  }
+ 
+  .review-content::before,
+  .review-content::after {
+    content: '"';
+    font-size: 2rem;
+    color: var(--gold-light);
+    position: absolute;
+  }
+ 
+  .review-content::before {
+    top: -10px;
+    left: -10px;
+  }
+ 
+  .review-content::after {
+    bottom: -20px;
+    right: -10px;
+  }
+ 
+  footer {
+    background: var(--gradient-primary);
+    color: #fff;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: .95rem;
+    margin-top: auto;
+    border-top: 2px solid var(--gold);
+  }
+ 
+  footer a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+ 
+  footer a:hover {
+    color: var(--gold-light);
+  }
+ 
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    .logo-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+    
+    .logo-image {
+      height: 40px;
+    }
+ 
+    .logo {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+ 
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      padding: 0.8rem;
+    }
+ 
+    nav a {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+    
+    .join-button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+    }
+ 
+    .category-card, .freelancer-card, .review-card {
+      width: 100%;
+      max-width: 350px;
+    }
+ 
+    .hire-now-btn {
+      width: 100%;
+    }
+ 
+    .categories h2:after,
+    .freelancers h2:after,
+    .faq-section h2:after,
+    .reviews-section h2:after {
+      bottom: -8px;
+      width: 50px;
+      height: 2px;
+    }
+/* Solid golden filled tick */
+.solid-golden-tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  position: relative;
+  animation: golden-glow 2s infinite;
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+}
+
+.solid-golden-tick svg {
+  width: 24px;
+  height: 24px;
+  filter: 
+    drop-shadow(0 0 4px rgba(212, 175, 55, 0.8))
+    drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+}
+
+@keyframes golden-glow {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.7));
+  }
+  50% {
+    transform: scale(1.15);
+    filter: 
+      drop-shadow(0 0 6px rgba(212, 175, 55, 0.9))
+      drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.7));
+  }
+}
+
+/* Add shine effect to the tick */
+.solid-golden-tick::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 35%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transform: rotate(35deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Ensure proper alignment with the name */
+h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+  }
+</style>
+</head>
+<body>
+  <!-- ========= HEADER ========= -->
+  <header>
+    <div class="logo-container">
+      <a href="https://www.thalexa.in"><img src="https://i.ibb.co/XxY3G2ww/thalexa-logo-final-removebg-preview.png" alt="thalexa-logo-final-removebg-preview" border="0" class="logo-image"></a>
+      <div class="logo">They Take.<br>We don't.</div>
+    </div>
+    <nav>
+      <a href="#freelancers">Top Freelancers</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+      
+            <a href="https://www.thalexa.in/learn.html">Learn a Skill</a>
+      <a href="https://www.thalexa.in/joinnow.html" class="join-button">Join Now</a>
+    </nav>
+  </header>
+  
+  <!-- ========= CATEGORIES ========= -->
+  <section class="categories" id="categories">
+    <h2>Browse Work Categories</h2>
+    <p>If your category is not here, You can mail us at: <strong>thalexa98@gmail.com</strong></p>
+    <div class="category-list">
+      <div class="category-card" data-category="design">
+        <i class="fas fa-paint-brush"></i>
+        Canva Design
+      </div>
+      <div class="category-card" data-category="photo">
+    <i class="fas fa-camera-retro"></i>
+    Photo Editing
+</div>
+      <div class="category-card" data-category="app">
+        <i class="fas fa-mobile-alt"></i>
+        App Development
+      </div>
+      <div class="category-card" data-category="web">
+        <i class="fas fa-code"></i>
+        Web Development
+      </div>
+      <div class="category-card" data-category="marketing">
+        <i class="fas fa-chart-line"></i>
+        Digital Marketing
+      </div>
+      <div class="category-card" data-category="lang">
+        <i class="fas fa-pen-fancy"></i>
+        Individual Languages
+      </div>
+      <div class="category-card" data-category="video">
+        <i class="fas fa-video"></i>
+        Video Editing
+      </div>
+      <div class="category-card" data-category="voice">
+        <i class="fas fa-microphone"></i>
+        Voice Over
+      </div>
+      <div class="category-card" data-category="act">
+        <i class="fas fa-theater-masks"></i>
+        Acting
+      </div>
+      <div class="category-card" data-category="content">
+        <i class="fas fa-file-alt"></i>
+        Content Writing
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="static-message">
+    <i class="fab fa-whatsapp"></i>
+    WhatsApp us the freelancer code and your project to get started. They'll reach out to you right away.
+  </div>
+
+  <!-- ========= FREELANCERS ========= -->
+  <section class="freelancers" id="freelancers">
+    <h2>Meet Our Top Freelancers</h2>
+    <button class="back-button" id="backBtn">← Back to All Freelancers</button>
+    
+    <div class="freelancer-section" id="design">
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/Jw0wSRDZ/Freelancer-banner-YATHARTH101.png" alt="Freelancer">
+        <h3>Yatharth Mandowara</h3>
+        <p>Canva Designer • ⭐5 • 01 reviews</p>
+        <p>Code 3130011</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Turning simple ideas into unforgettable brand designs.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/xkSQ1b7/VIPUL101.png" alt="Freelancer">
+        <h3>Vipul Bishnoi</h3>
+        <p>Canva Designer • ⭐5 • 0 reviews</p>
+        <p>Code 1250071</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Turning simple ideas into unforgettable brand designs.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/FL5HymkB/SIDDU101.png" alt="Freelancer">
+        <h3>Eslavath Siddu</h3>
+        <p>Canva Designer • ⭐5 • 0 reviews</p>
+        <p>Code 5082481</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Expertise in Instagram posts and business ads</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="photo">
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/FLgTX5rS/garvit101.png" alt="Freelancer">
+        <h3>Garvit Goyal</h3>
+        <p>Photo Editor • ⭐5 • 0 reviews</p>
+        <p>Code 3020201</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Professional and asthetic photos</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/nsFSgMwp/MUKUL101.png" alt="Freelancer">
+        <h3>Mukul</h3>
+        <p>Photo Editor • ⭐5 • 0 reviews</p>
+        <p>Code 4110181</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Photo that would grow your social profile.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="lang">
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/DPsLSRBw/AARUSH101.png" alt="Freelancer">
+        <h3>Aarush Jha</h3>
+        <p>Python Programmer • ⭐5 • 0 reviews</p>
+        <p>Code 7213021</p>
+        <p><strong>Price:</strong> Starting from ₹499</p>
+        <p>An IIT Kharagpur student</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/Pzfjk1PC/ANISH101.png" alt="Freelancer">
+        <h3>Anish</h3>
+        <p>Python, AI and ML • ⭐5 • 0 reviews</p>
+        <p>Code 8120051</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Beginner in AI and ML</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/CKwYHYNx/GARV101.png" alt="Freelancer">
+        <h3>Garv Kochar</h3>
+        <p>Python Programmer • ⭐5 • 0 reviews</p>
+        <p>Code 5700232</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Learning DSA now</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/m5GzmbzG/ANKUSH101.png" alt="Freelancer">
+        <h3>Ankush</h3>
+        <p>Programmer • ⭐5 • 0 reviews</p>
+        <p>Code 1273061</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Beginner</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      </div>
+    <div class="freelancer-section" id="video">
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/vxq0brg7/AARUSH101-2.png" alt="Freelancer">
+        <h3>Aarush Jha</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 7213021</p>
+        <p><strong>Price:</strong> Starting from ₹499</p>
+        <p>An IIT Kharagpur student</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/QFJrNT0M/SAMARTH101.png" alt="Freelancer">
+        <h3>Samarth Kadam</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 4314011</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Edits that transform your video</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+                  <div class="freelancer-card">
+        <img src="https://i.ibb.co/6Jf04Fp7/AYUSH101.png" alt="Freelancer">
+        <h3>Aayush Pareek</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 332001</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Expert in instagram reel edits</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/V0X8gQtQ/ROSHAN101.png" alt="Freelancer">
+        <h3>Roshan</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 4612281</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Cinematic and gameplay Editing</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+        <div class="freelancer-card">
+        <img src="https://i.ibb.co/NgYmknBH/AMARENDRA101.png" alt="Freelancer">
+        <h3>Amarendra Swain</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 7690061</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Basic long video Editor</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/VYzhfW6k/DEB101-2.png" alt="Freelancer">
+        <h3>Debaditya Howlader</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 7001521</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>An IIT Kharagpur Student</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/xQJx0JM/VICKY101.png" alt="Freelancer">
+        <h3>Vicky</h3>
+        <p>Video Editor • ⭐5 • 0 reviews</p>
+        <p>Code 4751102</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Edits that make you grow.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="content">
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/NnVykmM5/NANDAN101.png" alt="Freelancer">
+        <h3>Nandan Krishna S</h3>
+        <p>Content/script Writer • ⭐5 • 0 reviews</p>
+        <p>Code 5700231</p>
+        <p><strong>Price:</strong> ₹500-1000 for 500 page article</p>
+        <p>Script to boost your video naturally.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+            <div class="freelancer-card">
+        <img src="https://i.ibb.co/j9MQLHBT/SAMARTH101-2.png" alt="Freelancer">
+        <h3>Samarth Kadam</h3>
+        <p>Content/script Writer • ⭐5 • 0 reviews</p>
+        <p>Code 4314011</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Script which makes your content reach more views</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/mrWWw6GQ/KULVEER101.png" alt="Freelancer">
+        <h3>Kulveer</h3>
+        <p>Content Writer • ⭐5 • 0 reviews</p>
+        <p>Code 4751101</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>content which makes you on trending</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="app">
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/Kx0j0xJd/SURYANSH101.png" alt="Freelancer">
+        <h3>Suryansh Surya</h3>
+        <p>App Developer • ⭐5 • 0 reviews</p>
+        <p>Code 8230011</p>
+        <p><strong>Price:</strong> Starting from ₹2999</p>
+        <p>App for your company or startup</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/HD7ChVfD/DEB101.png" alt="Freelancer">
+        <h3>Debaditya Howlader</h3>
+        <p>App Developer • ⭐5 • 0 reviews</p>
+        <p>Code 7001521</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Personalized basic apps</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="marketing">
+           <div class="freelancer-card">
+        <img src="https://i.ibb.co/60cLTGck/DAKSH101.png" alt="Freelancer">
+        <h3>Daksh Arora</h3>
+        <p>Digital Marketer • ⭐5 • 0 reviews</p>
+        <p>Code 1250551</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Expert in SEO and Google Ads</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/rG1FBJSq/BHOWMIK101-2.png" alt="Freelancer">
+        <h3>Bhowmik Ahuja</h3>
+        <p>Digital Marketer • ⭐4 • 15 reviews</p>
+        <p>Code 4751103</p>
+        <p><strong>Price:</strong> Can vary</p>
+        <p>Expert in SEO, Google Ads and meme marketing</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/cht2jbp1/VIPUL101-2.png" alt="Freelancer">
+        <h3>Vipul Bishnoi</h3>
+        <p>Digital Marketer • ⭐4 • 15 reviews</p>
+        <p>Code 1250071</p>
+        <p><strong>Price:</strong> Starting from Basic</p>
+        <p>Expert in meta and google ads</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="writing">
+      <div class="freelancer-card">
+        <img src="" alt="Freelancer">
+        <h3>Coming soon</h3>
+        <p>Translator • ⭐5 • 0 reviews</p>
+        <p>Code </p>
+        <p><strong>Price:</strong> Starting from</p>
+        <p>Expert in French, Spanish English and Hindi</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="writing">
+      <div class="freelancer-card">
+        <img src="" alt="Freelancer">
+        <h3>Coming soon</h3>
+        <p>Translator • ⭐5 • 0 reviews</p>
+        <p>Code </p>
+        <p><strong>Price:</strong> Starting from</p>
+        <p>Expert in French, Spanish English and Hindi</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="act">
+      <div class="freelancer-card">
+        <img src="" alt="Freelancer">
+        <h3>Coming soon</h3>
+        <p>Actress • ⭐5 • 0 reviews</p>
+        <p>Code </p>
+        <p><strong>Price:</strong> Starting from</p>
+        <p>Best act in UGC ads</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+        <div class="freelancer-section" id="voice">
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/4nwYJRx6/Freelancer-banner-AADI101-2.png" alt="Freelancer">
+        <h3>Aaditya Baghel</h3>
+        <p>Voice Over Artist • ⭐5 • 0 reviews</p>
+        <p>Code 4613311</p>
+        <p><strong>Price:</strong> Starting from basic</p>
+        <p>Expert in English and Hindi</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    <div class="freelancer-section" id="web">
+<!-- Freelancer card with solid golden filled tick -->
+<div class="freelancer-card">
+  <img src="https://i.ibb.co/XZWCPgXd/BHOWMIK101.png" alt="Freelancer">
+  <h3>
+    <span class="solid-golden-tick">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+      </svg>
+    </span>
+    Bhowmik Ahuja
+  </h3>
+  <p>Front end Web Developer • ⭐4.7 • 30 reviews</p>
+  <p>Code 4751103</p>
+  <p><strong>Price:</strong> starting from ₹599</p>
+  <p>Thalexa website was coded by me.</p>
+  <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+    Hire Now for Project
+  </button>
+</div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/kstbPZFS/JASH101.png" alt="Freelancer">
+        <h3>Jash Jain</h3>
+        <p>Developer • ⭐5 • 0 reviews</p>
+        <p>Code 7860011</p>
+        <p><strong>Price:</strong> starting from basic</p>
+        <p>UI and UX Developer</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/Xr2wHRf7/Freelancer-banner-AADI101.png" alt="Freelancer">
+        <h3>Aaditya Baghel</h3>
+        <p>Front end Web Developer • ⭐5 • 0 reviews</p>
+        <p>Code 461311</p>
+        <p><strong>Price:</strong> starting from basic</p>
+        <p>Websites to grow your Startup</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/zTWV40cN/TANISHQ101.png" alt="Freelancer">
+        <h3>Tanishq Chhonker</h3>
+        <p>Front end Web Developer • ⭐5 • 0 reviews</p>
+        <p>Code 2820031</p>
+        <p><strong>Price:</strong> starting from basic</p>
+        <p>A website is a 24/7 salesperson that never sleeps.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">
+          Hire Now for Project
+        </button>
+      </div>
+    </div>
+    
+    <!-- DEFAULT list -->
+    <div class="freelancer-list" id="defaultList">
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/XZWCPgXd/BHOWMIK101.png" alt="Priya Sharma">
+        <h3>Bhowmik Ahuja</h3>
+        <p>Front end website Developer • ⭐4.7 (30)</p>
+        <p>Code 4751103</p>
+        <p>Starting from ₹599</p>
+        <p>Thalexa website was coded by me</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">Hire Now for Project</button>
+      </div>
+      
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/60cLTGck/DAKSH101.png" alt="Vishal Mishra">
+        <h3>Daksh Arora</h3>
+        <p>Digital Marketer • ⭐5 (0)</p>
+        <p>Code 1250551</p>
+        <p>Price: Starting from basic</p>
+        <p>Expert in SEO, google and meta ads.</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">Hire Now for Project</button>
+      </div>
+      
+      <div class="freelancer-card">
+        <img src="https://i.ibb.co/DPsLSRBw/AARUSH101.png" alt="Simran Kaur">
+        <h3>Aarush Jha</h3>
+        <p>Python and video editor • ⭐5 (0)</p>
+        <p>Code 7213021</p>
+        <p>Starting from basic</p>
+        <p>An IIT Kharagpur student. learning back end now</p>
+        <button class="hire-now-btn" onclick="window.open('https://tally.so/r/mJj1QJ', '_blank')">Hire Now for Project</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= REVIEWS ========= -->
+  <section class="reviews-section" id="reviews">
+    <h2>What Our Community Says</h2>
+    <div class="reviews-container">
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">Priya Gupta</div>
+            <div class="reviewer-role">Client</div>
+          </div>
+          <div class="review-rating"></div>
+        </div>
+        <div class="review-content">
+          Thalexa helped me find an amazing designer within minutes — and since there's no commission, I had more budget to actually invest in the project!
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">Simon</div>
+            <div class="reviewer-role">WordPress Website Development</div>
+          </div>
+          <div class="review-rating">⭐4</div>
+        </div>
+        <div class="review-content">
+          With 0% cuts, I finally take home exactly what I quote. Thalexa's become my go-to for landing gigs without the middleman drama.
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <div class="review-header">
+          <div>
+            <div class="reviewer-name">Monika</div>
+            <div class="reviewer-role">Voice Over Artist</div>
+          </div>
+          <div class="review-rating">⭐4.5</div>
+        </div>
+        <div class="review-content">
+          Thalexa sending that security amount before the project starts... just makes everything feel safe and sorted. Big win!
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ========= FAQ ========= -->
+  <section class="faq-section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          What is Thalexa really?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Thalexa is a 0% commission freelance marketplace designed to help freelancers and clients connect directly. Unlike other platforms, you keep 100% of your earnings, and clients get secure project handling and post-project support. It’s perfect for students, beginners, and professionals looking for reliable freelance opportunities.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          What makes Thalexa different?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          0% commission, secure payments, free post-project support, affordable plans from ₹99, skill-building community, and priority access to high-budget projects.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Is my money safe?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes, completely. For Professional (₹649) and Elite (₹899) freelancers, clients must deposit a security amount before the project starts. This ensures you always get paid for your work, and no scams happen.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Who should join Thalexa?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Students start with ₹99 Basic, growing freelancers choose ₹649 Professional, full-timers go for ₹899 Elite, and clients join for ₹899 to get reliable freelancers with 2 months of support.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          How is my project and payment secured as a freelancer?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          With the Professional and Elite plans, the client must deposit a security amount before work begins. This guarantees your payment. If any issue arises, the Thalexa team provides priority support to resolve disputes quickly.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          Did client get any after project support?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Clients with a Client Membership (₹899 for 3 months) get 2 months of after-project support from freelancers. This ensures that if anything breaks or needs updates, the client is covered without extra costs.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          I don't have any skills. Can I still freelance on Thalexa?
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          You can join with the Basic plan (₹99) and access free learning resources through Thalexa Learn. Start with beginner-friendly gigs like: Data entry Simple design Social media tasks As you grow, upgrade to the Professional or Elite plan for better projects and earnings.
+        </div>
+      </div>
+    </div>
+  </section>
+<footer>
+  <section class="Contact" id="contact"></section>
+  <div style="margin-bottom: 10px;">
+    <a href="https://www.thalexa.in/privacy-policy.html" style="margin: 0 10px;">Privacy Policy</a> |
+    <a href="https://www.thalexa.in/terms-and-conditions.html" style="margin: 0 10px;">Terms and Conditions</a> |
+    <a href="https://www.thalexa.in/refund-policy.html" style="margin: 0 10px;">Refund Policy</a>
+  </div>
+  <div style="margin-bottom: 10px;">
+    For any query, email at <strong>thalexa98@gmail.com</strong><br>
+    Customer support: <strong>+91 8517801653</strong>
+  </div>
+  <div>
+    © 2025 Thalexa. All rights reserved. "They take. We don't." is a trademark of Thalexa.
+  </div>
+</footer>
+
+  <script>
+  /* category filter */
+  const catCards = document.querySelectorAll('.category-card'),
+        allLists = document.querySelectorAll('.freelancer-section'),
+        backBtn = document.getElementById('backBtn'),
+        defaultList = document.getElementById('defaultList');
+        
+  catCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.category;
+      allLists.forEach(l => l.classList.remove('active'));
+      defaultList.classList.add('hidden');
+      document.getElementById(id).classList.add('active');
+      backBtn.classList.add('show');
+      
+      // Scroll to freelancers section
+      document.getElementById('freelancers').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  
+  backBtn.addEventListener('click', () => {
+    allLists.forEach(l => l.classList.remove('active'));
+    defaultList.classList.remove('hidden');
+    backBtn.classList.remove('show');
+  });
+  
+  /* FAQ Accordion */
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all items
+      faqItems.forEach(faqItem => {
+        faqItem.classList.remove('active');
+        faqItem.querySelector('.faq-answer').classList.remove('active');
+      });
+      
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+        answer.classList.add('active');
+      }
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners to all Aarush Jha profile cards
+    const aarushCards = document.querySelectorAll('.freelancer-card');
+    
+    aarushCards.forEach(card => {
+      const nameElement = card.querySelector('h3');
+      if (nameElement && nameElement.textContent.includes('Aarush Jha')) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function() {
+          window.location.href = 'https://www.thalexa.in/aarush.html';
+        });
+      }
+    });
+  });
+  </script>
+</body>
+</html>
