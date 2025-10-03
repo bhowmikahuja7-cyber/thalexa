@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+        --primary-bg: #0a0a0a;
+        --secondary-bg: #1a1a1a;
+        --card-bg: #ffffff;
+        --text: #222222;
+        --text-light: #666666;
+        --gold: #D4AF37;
+        --gold-light: #F1E5AC;
+        --gold-dark: #B8860B;
+        --accent: #D4AF37;
+        --accent-hover: #B8860B;
+        --hire-btn: #D4AF37;
+        --hire-btn-hover: #B8860B;
+        --gradient-primary: linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 100%);
+        --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+        --section-bg: #0f0f0f;
+    }
+
+    body {
+        background-color: var(--primary-bg);
+        color: white;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: var(--primary-bg);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: -0.5px;
+    }
+
+    .tagline {
+        font-size: 14px;
+        color: var(--gold-light);
+        font-style: italic;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        transition: all 0.3s;
+        padding: 8px 0;
+        position: relative;
+    }
+
+    nav a:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--gold);
+        transition: width 0.3s;
+    }
+
+    nav a:hover {
+        color: var(--gold);
+    }
+
+    nav a:hover:after {
+        width: 100%;
+    }
+
+    /* NEW: FAQ and Reviews Buttons */
+    .info-buttons {
+        display: flex;
+        gap: 15px;
+        margin-right: 20px;
+    }
+
+    .info-btn {
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 14px;
+        background: transparent;
+        border: 1.5px solid var(--gold-light);
+        color: var(--gold-light);
+        text-decoration: none;
+    }
+
+    .info-btn:hover {
+        background: var(--gold);
+        color: var(--primary-bg);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        border-color: var(--gold);
+    }
+
+    .auth-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 15px;
+    }
+
+    .btn-outline {
+        border: 1.5px solid var(--gold);
+        color: var(--gold);
+        background: transparent;
+    }
+
+    .btn-outline:hover {
+        background: var(--gold);
+        color: var(--primary-bg);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--primary-bg);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(to right, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.85)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1415&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+        font-size: 20px;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        font-weight: 400;
+        opacity: 0.95;
+        color: var(--gold-light);
+    }
+
+    .search-bar {
+        display: flex;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--gold-light);
+    }
+
+    .search-bar input {
+        flex: 1;
+        padding: 18px 20px;
+        border: none;
+        font-size: 16px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--text);
+    }
+
+    .search-bar button {
+        padding: 0 30px;
+        background: var(--gold);
+        color: var(--primary-bg);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .search-bar button:hover {
+        background: var(--gold-dark);
+    }
+
+    /* Categories Section */
+    .section-title {
+        text-align: center;
+        margin: 60px 0 40px;
+        font-size: 36px;
+        color: white;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .section-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--gold);
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .category-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        cursor: pointer;
+        border: 1px solid var(--gold-light);
+    }
+
+    .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold);
+    }
+
+    .category-img {
+        height: 160px;
+        background: linear-gradient(135deg, #2a2a2a, #0a0a0a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-size: 42px;
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .category-content {
+        padding: 20px;
+    }
+
+    .category-content h3 {
+        margin-bottom: 12px;
+        color: var(--text);
+        font-size: 18px;
+    }
+
+    .category-content p {
+        color: var(--text-light);
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Services Section */
+    .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .service-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        border: 1px solid var(--gold-light);
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold);
+    }
+
+    .service-img {
+        height: 200px;
+        background: linear-gradient(135deg, #2a2a2a, #0a0a0a);
+        position: relative;
+        border-bottom: 2px solid var(--gold);
+        overflow: hidden;
+    }
+
+    .service-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .service-price {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: var(--gradient-gold);
+        color: var(--primary-bg);
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        z-index: 2;
+    }
+
+    .service-content {
+        padding: 20px;
+    }
+
+    .service-content h3 {
+        margin-bottom: 15px;
+        color: var(--text);
+        font-size: 20px;
+    }
+
+    .seller {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 15px 0;
+    }
+
+    .seller-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2a2a2a, #0a0a0a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-weight: 600;
+        font-size: 15px;
+        border: 1px solid var(--gold-light);
+    }
+
+    .rating {
+        color: var(--gold);
+        margin: 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .rating span {
+        color: var(--text-light);
+        font-weight: 500;
+        margin-left: 5px;
+    }
+    
+    /* Hire Now Button */
+    .hire-now-btn {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        background: var(--gold);
+        color: var(--primary-bg);
+        text-align: center;
+        font-weight: 700;
+        border-radius: 6px;
+        margin-top: 15px;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .hire-now-btn:hover {
+        background: var(--gold-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* Fiverr Pro Section Styles with Black, White and Gold Theme */
+    .fiverr-pro {
+        background: var(--primary-bg);
+        padding: 80px 0;
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+    }
+    
+    .fiverr-pro-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .fiverr-pro .section-title {
+        color: var(--gold);
+        font-size: 36px;
+        text-transform: lowercase;
+        margin-bottom: 15px;
+    }
+    
+    .fiverr-pro .section-title:after {
+        background: var(--gold);
+    }
+    
+    .fiverr-pro-subtitle {
+        font-size: 20px;
+        color: var(--gold-light);
+        margin-top: 15px;
+    }
+    
+    .fiverr-pro-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    
+    .feature {
+        background: var(--secondary-bg);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+        transition: all 0.3s;
+        border: 1px solid var(--gold);
+    }
+    
+    .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold-light);
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 32px;
+        color: var(--gold);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        border: 2px solid var(--gold);
+    }
+    
+    .feature h3 {
+        margin-bottom: 15px;
+        color: var(--gold-light);
+        font-size: 20px;
+    }
+    
+    .feature p {
+        color: white;
+        line-height: 1.6;
+    }
+    
+    .fiverr-pro-cta {
+        text-align: center;
+        margin: 40px 0 60px;
+    }
+    
+    .fiverr-pro-cta .btn-primary {
+        background: var(--gradient-gold);
+        color: var(--primary-bg);
+        padding: 15px 40px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .fiverr-pro-cta .btn-primary:hover {
+        background: linear-gradient(135deg, #B8860B 0%, #D4AF37 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+    
+    .project-status {
+        background: var(--secondary-bg);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+        border: 1px solid var(--gold);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .project-status h3 {
+        margin-bottom: 10px;
+        color: var(--gold-light);
+        font-size: 20px;
+    }
+    
+    .project-status p {
+        color: white;
+        margin-bottom: 20px;
+    }
+    
+    .progress-bar {
+        height: 10px;
+        background: var(--primary-bg);
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid var(--gold-light);
+    }
+    
+    .progress-fill {
+        height: 100%;
+        width: 80%;
+        background: var(--gradient-gold);
+        border-radius: 5px;
+    }
+    
+    .months {
+        display: flex;
+        justify-content: space-between;
+        color: var(--gold-light);
+        font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+        .fiverr-pro-features {
+            grid-template-columns: 1fr;
+        }
+        
+        .months {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+    }
+    
+    /* How it Works */
+    .how-it-works {
+        padding: 70px 0;
+        background-color: var(--primary-bg);
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+    }
+
+    .how-it-works .section-title {
+        color: white;
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .step {
+        text-align: center;
+        background: var(--secondary-bg);
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        border: 1px solid var(--gold);
+    }
+
+    .step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold-light);
+    }
+
+    .step-icon {
+        width: 90px;
+        height: 90px;
+        background: var(--primary-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 32px;
+        color: var(--gold);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        border: 2px solid var(--gold);
+    }
+
+    .step h3 {
+        margin-bottom: 15px;
+        color: white;
+        font-size: 20px;
+    }
+
+    .step p {
+        color: var(--gold-light);
+        line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--gradient-primary);
+        color: white;
+        padding: 70px 0 25px;
+        border-top: 2px solid var(--gold);
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+        margin-bottom: 25px;
+        font-size: 20px;
+        color: var(--gold);
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .footer-column h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 2px;
+    }
+
+    .footer-column ul {
+        list-style: none;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 12px;
+    }
+
+    .footer-column a {
+        color: var(--gold-light);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 15px;
+    }
+
+    .footer-column a:hover {
+        color: var(--gold);
+        padding-left: 5px;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: var(--gold);
+        font-size: 18px;
+        background: rgba(212, 175, 55, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        border: 1px solid var(--gold-light);
+    }
+
+    .social-icons a:hover {
+        background: var(--gold);
+        color: var(--primary-bg);
+        transform: translateY(-3px);
+    }
+
+    .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
+        color: var(--gold-light);
+        font-size: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .hero h1 {
+            font-size: 40px;
+        }
+        
+        .steps {
+            gap: 20px;
+        }
+        
+        .step {
+            max-width: 220px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        nav ul {
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .info-buttons {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+
+        .hero {
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+        }
+
+        .steps {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step {
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .auth-buttons {
+            flex-direction: column;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .auth-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .info-buttons {
+            flex-direction: column;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .info-btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .search-bar {
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .search-bar input {
+            border-radius: 0;
+        }
+        
+        .search-bar button {
+            padding: 15px;
+        }
+        
+        .categories,
+        .services {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+        /* FAQ Section Styles */
+    .faq-section {
+        background-color: var(--primary-bg);
+        padding: 80px 0;
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+    }
+    
+    .faq-section h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 36px;
+        color: white;
+        font-weight: 700;
+        position: relative;
+    }
+    
+    .faq-section h2:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--gold);
+        margin: 15px auto 0;
+        border-radius: 2px;
+    }
+    
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .faq-item {
+        background: var(--secondary-bg);
+        border-radius: 8px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--gold-light);
+        transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        border-color: var(--gold);
+        box-shadow: 0 6px 15px rgba(212, 175, 55, 0.2);
+    }
+    
+    .faq-question {
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--gold-light);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    
+    .faq-question:hover {
+        color: var(--gold);
+    }
+    
+    .faq-icon {
+        font-size: 14px;
+        transition: transform 0.3s ease;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        color: white;
+        line-height: 1.6;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        background: rgba(212, 175, 55, 0.05);
+    }
+    
+    .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 20px;
+    }
+    
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+    }
+    
+    @media (max-width: 768px) {
+        .faq-section {
+            padding: 60px 0;
+        }
+        
+        .faq-section h2 {
+            font-size: 28px;
+        }
+        
+        .faq-question {
+            font-size: 16px;
+            padding: 15px;
+        }
+        
+        .faq-answer {
+            font-size: 14px;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 15px;
+        }
+    }
+    /* Why Thalexa Section */
+    .why-thalexa {
+        background-color: var(--primary-bg);
+        padding: 80px 0;
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+    }
+    
+    .why-thalexa-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .why-thalexa .section-title {
+        color: var(--gold);
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .why-thalexa .section-title:after {
+        background: var(--gold);
+    }
+    
+    .why-thalexa-subtitle {
+        font-size: 20px;
+        color: var(--gold-light);
+        margin-top: 15px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .benefits {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    
+    .benefit {
+        background: var(--secondary-bg);
+        padding: 40px 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+        transition: all 0.3s;
+        border: 1px solid var(--gold);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .benefit:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--gradient-gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+    }
+    
+    .benefit:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+        border-color: var(--gold-light);
+    }
+    
+    .benefit:hover:before {
+        transform: scaleX(1);
+    }
+    
+    .benefit-icon {
+        width: 90px;
+        height: 90px;
+        background: var(--primary-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 36px;
+        color: var(--gold);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        border: 2px solid var(--gold);
+        transition: all 0.3s;
+    }
+    
+    .benefit:hover .benefit-icon {
+        background: var(--gradient-gold);
+        color: var(--primary-bg);
+        transform: scale(1.1);
+    }
+    
+    .benefit h3 {
+        margin-bottom: 15px;
+        color: var(--gold-light);
+        font-size: 22px;
+    }
+    
+    .benefit p {
+        color: white;
+        line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+        .benefits {
+            grid-template-columns: 1fr;
+        }
+        
+        .benefit {
+            padding: 30px 20px;
+        }
+    }
+</style>
+    <!-- Link your CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+    <!-- Link your JS (defer = run after HTML parses) -->
+  <script src="js/main.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thalexa</title>
+  <meta name="description" content="Thalexa - 0% commission for freelancer. No service charges for clients, guaranteed security amount for freelancers, and post-project support for clients.">
+  <link rel="icon" href="https://i.ibb.co/KppHHbwP/thalexa-logo-final-removebg-preview.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">Thalexa</div>
+                    <div class="tagline">They take. We don't.</div>
+              </div>
+                <nav>
+                    <ul>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#explore">Explore</a></li>
+                      <li><a href="#pro">Become Pro</a></li>
+                      <li><a href="#how">How it Works</a></li>
+                      <li><a href="#faq">FAQs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="https://www.thalexa.in/learn.html">Learn a Skill</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+    <a href="https://www.thalexa.in/joinnow.html" class="btn btn-primary">Join Now</a>
+</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find the perfect freelance services for your business at <strong>0% commission</strong></h1>
+            <p>Connect with skilled freelancers worldwide. Get your projects done with Thalexa's seamless experience.</p>
+<div class="search-bar">
+    <input type="text" placeholder="Search for more categories">
+    <button type="button" onclick="window.location.href='https://www.thalexa.in/search.html'">Search</button>
+</div>
+
+        </div>
+    </section>
+<section class="why-thalexa" id="why">
+    <div class="container">
+        <div class="why-thalexa-header">
+            <h2 class="section-title">Why Thalexa?</h2>
+            <p class="why-thalexa-subtitle">We're revolutionizing the freelance marketplace with client and freelancer-focused solutions</p>
+        </div>
+        
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Security Amount for Freelancers</h3>
+                <p>Clients deposit a security amount before projects begin, ensuring freelancers get paid for their work with zero risk of non-payment or scams.</p>
+            </div>
+            
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <h3>0% Commission for Clients</h3>
+                <p>Unlike other platforms that charge high fees, we never take a commission from clients. You pay only for the services you receive, nothing more.</p>
+            </div>
+            
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>After Project Support</h3>
+                <p>Clients receive 2 months of post-project support, ensuring any issues are resolved without additional costs or complications.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section -->
+<section class="container" id="categories">
+    <h2 class="section-title">Browse Categories</h2>
+    <div class="categories">
+        <div class="category-card">
+            <div class="category-img">
+                <i class="fas fa-pencil-alt"></i>
+            </div>
+            <div class="category-content">
+                <h3>Graphics & Design</h3>
+                <p>Logos, illustrations, banners</p>
+            </div>
+        </div>
+        <div class="category-card">
+            <div class="category-img">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="category-content">
+                <h3>Programming & Tech</h3>
+                <p>Websites, apps, support</p>
+            </div>
+        </div>
+        <div class="category-card">
+            <div class="category-img">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="category-content">
+                <h3>Digital Marketing</h3>
+                <p>SEO, social media, content</p>
+            </div>
+        </div>
+        <div class="category-card">
+            <div class="category-img">
+                <i class="fas fa-pen-fancy"></i>
+            </div>
+            <div class="category-content">
+                <h3>Writing & Translation</h3>
+                <p>Content, copywriting, translation</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Services Section -->
+<!-- Services Section -->
+<section class="container"  id="explore">
+  <h2 class="section-title">Popular Freelancers</h2>
+    <div class="services">
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://i.ibb.co/XZWCPgXd/BHOWMIK101.png" alt="Professional Freelancer">
+                <div class="service-price">₹599</div>
+            </div>
+            <div class="service-content">
+                <h3>Front end web Developer</h3>
+                <div class="seller">
+                    <div class="seller-avatar">BA</div>
+                  
+                </div>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>4.7 (30)</span>
+                </div>
+                <a href="https://tally.so/r/mJj1QJ" class="hire-now-btn">Hire Now for Project</a>
+            </div>
+        </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://i.ibb.co/60cLTGck/DAKSH101.png" alt="Professional Freelancer">
+                  <div class="service-price">basic</div>
+                </div>
+                <div class="service-content">
+                    <h3>Digital Marketer</h3>
+                    <div class="seller">
+                        <div class="seller-avatar">DA</div>
+                        <div>Expert in SEO, google and meta ads.</div>
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>5.0 (0)</span>
+                    </div>
+                    <a href="https://tally.so/r/mJj1QJ" class="hire-now-btn">Hire Now for Project</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                  <img src="https://i.ibb.co/DPsLSRBw/AARUSH101.png" alt="Professional Freelancer">
+<div class="service-price">basic</div>
+                </div>
+                <div class="service-content">
+                    <h3>Python and Video Editing</h3>
+                    <div class="seller">
+                        <div class="seller-avatar">AJ</div>
+                        <div>Voice Specialist</div>
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                        <span>5 (0)</span>
+                    </div>
+                    <a href="https://tally.so/r/mJj1QJ" class="hire-now-btn">Hire Now for Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Fiverr Pro Section -->
+<section class="fiverr-pro" id="pro">
+    <div class="container">
+        <div class="fiverr-pro-header">
+          <h2 class="section-title">Thalexa pro.</h2>
+            <p class="fiverr-pro-subtitle">The premium freelance solution for Clients and Freelancers</p>
+        </div>
+        
+        <div class="fiverr-pro-features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Dedicated hiring experts</h3>
+                <p>Count on an account manager to find you the right talent and see to your projects every need.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Advanced management tools</h3>
+                <p>Seamlessly integrate freelancers into your team and projects.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Satisfaction guarantee</h3>
+                <p>Order confidently, with guaranteed refunds for less-than-satisfactory deliveries.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Flexible payment models</h3>
+                <p>Pay per project or opt for hourly rates to facilitate longer-term collaboration.</p>
+            </div>
+        </div>
+        
+        <div class="fiverr-pro-cta">
+ <a href="https://www.thalexa.in/pro.html" class="btn btn-primary">Take a Free Trial</a>
+        </div>
+        
+        <div class="project-status">
+            <h3>Project Status</h3>
+            <p>2025| 4 steps out of 5</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="months">
+                <span>Jan</span>
+                <span>Feb</span>
+                <span>Mar</span>
+                <span>Apr</span>
+                <span>May</span>
+            </div>
+        </div>
+    </div>
+</section>    <!-- How it Works -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2 class="section-title">How Thalexa Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>1. Search</h3>
+                    <p>Find the perfect service for your needs</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>2. Connect</h3>
+                    <p>Message the freelancer to discuss details</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>3. Get Work Done</h3>
+                    <p>Receive your completed project</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>4. Review</h3>
+                    <p>Rate your experience and help others</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+    <section class="faq-section" id="faq">
+    <div class="container">
+        <h2><strong>Got some questions?</strong></h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is Thalexa really?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Thalexa is a 0% commission freelance marketplace designed to help freelancers and clients connect directly. Unlike other platforms, you keep 100% of your earnings, and clients get secure project handling and post-project support. It's perfect for students, beginners, and professionals looking for reliable freelance opportunities.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What makes Thalexa different?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    0% commission, secure payments, free post-project support, affordable plans from ₹99, skill-building community, and priority access to high-budget projects.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is my money safe?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, completely. For Professional (₹649) and Elite (₹899) freelancers, clients must deposit a security amount before the project starts. This ensures you always get paid for your work, and no scams happen.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Who should join Thalexa?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Students start with ₹99 Basic, growing freelancers choose ₹649 Professional, full-timers go for ₹899 Elite, and clients join for ₹899 to get reliable freelancers with 2 months of support.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How is my project and payment secured as a freelancer?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    With the Professional and Elite plans, the client must deposit a security amount before work begins. This guarantees your payment. If any issue arises, the Thalexa team provides priority support to resolve disputes quickly.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Did client get any after project support?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Clients with a Client Membership (₹899 for 3 months) get 2 months of after-project support from freelancers. This ensures that if anything breaks or needs updates, the client is covered without extra costs.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    I don't have any skills. Can I still freelance on Thalexa?
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    You can join with the Basic plan (₹99) and access free learning resources through Thalexa Learn. Start with beginner-friendly gigs like: Data entry Simple design Social media tasks As you grow, upgrade to the Professional or Elite plan for better projects and earnings.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container" id="contact">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Thalexa</h3>
+                    <p>The freelance marketplace that puts people first. They take. We don't.</p>
+                    <div class="social-icons">
+                        <a href="https://whatsapp.com/channel/0029VbCAJqU6LwHq7m8Njc3I"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/thalexa.in/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://www.thalexa.in/privacy-policy.html">Privacy policy</a></li>
+                        <li><a href="https://www.thalexa.in/terms-and-conditions.html">Terms and Conditions</a></li>
+                        <li><a href="https://www.thalexa.in/refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>For any query, email at: <strong>thalexa98@gmail.com</strong></p>
+                <p>customer support: <strong>+91 8517801653</strong></p>
+                <p>&copy; 2025 Thalexa. All rights reserved. "They take. We don't." is a trademark of Thalexa.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Simplified JavaScript for Thalexa website search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    
+    // Search button functionality
+    searchButton.addEventListener('click', function() {
+        const searchValue = searchInput.value.trim();
+        if (searchValue) {
+            // Redirect to search results page with the query
+            window.location.href = https://www.thalexa.in/search.html?q=${encodeURIComponent(searchValue)};
+        }
+    });
+    
+    // Allow pressing Enter to search
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchButton.click();
+        }
+    });
+});
+<!-- Add this script to handle the redirect -->
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners to all Aarush Jha profile cards
+    const aarushCards = document.querySelectorAll('.service-card');
+    
+    aarushCards.forEach(card => {
+      const nameElement = card.querySelector('h3');
+      if (nameElement && nameElement.textContent.includes('Python and Video Editing')) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+          // Don't redirect if the click was on the hire button
+          if (!e.target.closest('.hire-now-btn')) {
+            window.location.href = 'https://www.thalexa.in/aarush.html';
+          }
+        });
+      }
+    });
+  });
+  // FAQ functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Optionally open first FAQ by default
+        // faqItems[0].classList.add('active');
+    });
+    // Category click functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    categoryCards.forEach(card => {
+        card.style.cursor = 'pointer';
+        
+        card.addEventListener('click', function(e) {
+            // Get the category name from the h3 element
+            const categoryName = this.querySelector('h3').textContent;
+            
+            // Redirect to search page with category parameter
+            window.location.href = https://www.thalexa.in/search.html?category=${encodeURIComponent(categoryName)};
+        });
+    });
+});
+// Simple FAQ toggling fix
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ functionality - Fixed version
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        if (question) {
+            question.addEventListener('click', () => {
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        }
+    });
+});
+    </script>
+</body>
+</html>
