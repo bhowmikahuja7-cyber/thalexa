@@ -1475,108 +1475,77 @@
         </div>
     </footer>
 
-    <script>
-// Simplified JavaScript for Thalexa website search functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.search-bar input');
-    const searchButton = document.querySelector('.search-bar button');
-    
-    // Search button functionality
-    searchButton.addEventListener('click', function() {
-        const searchValue = searchInput.value.trim();
-        if (searchValue) {
-            // Redirect to search results page with the query
-            window.location.href = https://www.thalexa.in/search.html?q=${encodeURIComponent(searchValue)};
-        }
-    });
-    
-    // Allow pressing Enter to search
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            searchButton.click();
-        }
-    });
-});
-<!-- Add this script to handle the redirect -->
-  document.addEventListener('DOMContentLoaded', function() {
-    // Add click event listeners to all Aarush Jha profile cards
-    const aarushCards = document.querySelectorAll('.service-card');
-    
-    aarushCards.forEach(card => {
-      const nameElement = card.querySelector('h3');
-      if (nameElement && nameElement.textContent.includes('Python and Video Editing')) {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', function(e) {
-          // Don't redirect if the click was on the hire button
-          if (!e.target.closest('.hire-now-btn')) {
-            window.location.href = 'https://www.thalexa.in/aarush.html';
-          }
-        });
-      }
-    });
-  });
-  // FAQ functionality
+<script>
     document.addEventListener('DOMContentLoaded', function() {
+        // --- Search Bar Functionality ---
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+
+        if (searchButton) {
+            searchButton.addEventListener('click', function() {
+                const searchValue = searchInput.value.trim();
+                // Note: The original code had a syntax error here. It should be a string.
+                if (searchValue) {
+                    window.location.href = `https://www.thalexa.in/search.html?q=${encodeURIComponent(searchValue)}`;
+                } else {
+                    // Redirect even if empty, as per original button's onclick attribute
+                    window.location.href = 'https://www.thalexa.in/search.html';
+                }
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        }
+
+        // --- Service Card Redirect Functionality (for "Aarush") ---
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            const nameElement = card.querySelector('h3');
+            if (nameElement && nameElement.textContent.includes('Python and Video Editing')) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.hire-now-btn')) {
+                        window.location.href = 'https://www.thalexa.in/aarush.html';
+                    }
+                });
+            }
+        });
+
+        // --- FAQ Toggling Functionality ---
         const faqItems = document.querySelectorAll('.faq-item');
-        
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            
-            question.addEventListener('click', () => {
-                // Close all other FAQ items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
+            if (question) {
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    // Close all other active items
+                    faqItems.forEach(otherItem => {
                         otherItem.classList.remove('active');
+                    });
+                    // Toggle the current item based on its previous state
+                    if (!isActive) {
+                        item.classList.add('active');
                     }
                 });
-                
-                // Toggle current item
-                item.classList.toggle('active');
+            }
+        });
+
+        // --- Category Card Click Functionality ---
+        const categoryCards = document.querySelectorAll('.category-card');
+        categoryCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function() {
+                const categoryName = this.querySelector('h3').textContent;
+                // Note: The original code had a syntax error here. It should be a string.
+                window.location.href = `https://www.thalexa.in/search.html?category=${encodeURIComponent(categoryName)}`;
             });
         });
-        
-        // Optionally open first FAQ by default
-        // faqItems[0].classList.add('active');
     });
-    // Category click functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const categoryCards = document.querySelectorAll('.category-card');
-    
-    categoryCards.forEach(card => {
-        card.style.cursor = 'pointer';
-        
-        card.addEventListener('click', function(e) {
-            // Get the category name from the h3 element
-            const categoryName = this.querySelector('h3').textContent;
-            
-            // Redirect to search page with category parameter
-            window.location.href = https://www.thalexa.in/search.html?category=${encodeURIComponent(categoryName)};
-        });
-    });
-});
-// Simple FAQ toggling fix
-document.addEventListener('DOMContentLoaded', function() {
-    // FAQ functionality - Fixed version
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        if (question) {
-            question.addEventListener('click', () => {
-                // Close all other FAQ items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // Toggle current item
-                item.classList.toggle('active');
-            });
-        }
-    });
-});
-    </script>
+</script>
 </body>
 </html>
