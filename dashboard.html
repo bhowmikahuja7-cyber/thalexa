@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thalexa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ALL YOUR EXISTING HOMEPAGE CSS GOES HERE --- */
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --gold: #D4AF37;
+            --gold-light: #F1E5AC;
+        }
+        /* ... etc ... */
+        body {
+            background-color: var(--primary-bg);
+            color: white;
+            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        header {
+            background-color: var(--primary-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--gold);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        #user-profile-icon img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--gold);
+        }
+        .btn-primary {
+             background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+             color: #0a0a0a;
+             border: none;
+             padding: 10px 20px;
+             border-radius: 6px;
+             font-weight: 600;
+             cursor: pointer;
+             text-decoration: none;
+        }
+
+        /* --- NEW DASHBOARD OVERLAY STYLES --- */
+        .dashboard-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .dashboard-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dashboard-container {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .dashboard-overlay.visible .dashboard-container {
+            transform: scale(1);
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 15px;
+        }
+        .dashboard-header h1 { color: var(--gold-light); margin: 0; }
+        .close-dashboard-btn {
+            font-size: 32px;
+            color: #aaa;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .dashboard-grid {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+        .card { padding: 0; }
+        .card h2 { color: var(--gold); margin-top: 0; }
+        .project-list { list-style: none; padding: 0; }
+        .project-list li { background-color: var(--primary-bg); padding: 10px; border-radius: 4px; margin-bottom: 8px; }
+        .no-projects { color: #888; }
+        #logout-button { background-color: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">...</div>
+            <nav>...</nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn-primary" id="join-now-btn">Join Now</a>
+                <div id="user-profile-icon" style="display: none;">
+                    <img id="profile-pic" src="" alt="User Profile">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        </main>
+
+    <div id="dashboard-overlay" class="dashboard-overlay">
+        <div class="dashboard-container">
+            <button id="close-dashboard-btn" class="close-dashboard-btn">&times;</button>
+            <div class="dashboard-header">
+                <h1 id="welcome-message">Loading...</h1>
+            </div>
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h2>As a Freelancer</h2>
+                    <h3>Active Projects</h3>
+                    <ul id="freelancer-active-projects" class="project-list"><p class="no-projects">No active projects.</p></ul>
+                    <h3>Completed Projects</h3>
+                    <ul id="freelancer-completed-projects" class="project-list"><p class="no-projects">No completed projects yet.</p></ul>
+                </div>
+                <div class="card">
+                    <h2>As a Client</h2>
+                    <h3>Your Posted Projects</h3>
+                    <ul id="client-projects" class="project-list"><p class="no-projects">You haven't posted any projects.</p></ul>
+                    <button id="logout-button">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //... your FAQ and other page scripts can go here
+    </script>
+    
+    <script>
+        const supabaseUrl = 'https://jpoyfkuujdlhfbsqmzkp.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impwb3lma3V1amRsaGZic3FtemtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MjkxMjAsImV4cCI6MjA3NTUwNTEyMH0.5HxSH9zeDVH3n8pDy6ivAHCxjsDkZhodL8B-TE7DH0c';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Get all necessary elements
+        const joinNowButton = document.getElementById('join-now-btn');
+        const userProfileIcon = document.getElementById('user-profile-icon');
+        const profilePic = document.getElementById('profile-pic');
+        const dashboardOverlay = document.getElementById('dashboard-overlay');
+        const closeDashboardButton = document.getElementById('close-dashboard-btn');
+        const logoutButton = document.getElementById('logout-button');
+        const welcomeMessage = document.getElementById('welcome-message');
+
+        // Function to update the header UI
+        const updateUserStatus = (session) => {
+            if (session) {
+                joinNowButton.style.display = 'none';
+                userProfileIcon.style.display = 'block';
+                if (session.user.user_metadata?.avatar_url) {
+                    profilePic.src = session.user.user_metadata.avatar_url;
+                }
+                welcomeMessage.textContent = `Welcome, ${session.user.user_metadata.full_name}!`;
+            } else {
+                joinNowButton.style.display = 'block';
+                userProfileIcon.style.display = 'none';
+            }
+        };
+
+        // Function to fetch all dashboard data
+        const fetchDashboardData = async (userId) => {
+            // Fetch all data in parallel for speed
+            const [freelancerActive, freelancerCompleted, clientProjects] = await Promise.all([
+                supabaseClient.from('projects').select('title').eq('freelancer_id', userId).eq('status', 'in_progress'),
+                supabaseClient.from('projects').select('title').eq('freelancer_id', userId).eq('status', 'completed'),
+                supabaseClient.from('projects').select('title, status').eq('client_id', userId)
+            ]);
+
+            // Helper to render lists
+            const renderList = (elementId, data, formatter) => {
+                const list = document.getElementById(elementId);
+                list.innerHTML = ''; // Clear placeholder
+                if (data && data.length > 0) {
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = formatter(item);
+                        list.appendChild(li);
+                    });
+                } else {
+                    list.innerHTML = `<p class="no-projects">${list.previousElementSibling.textContent.includes('Active') ? 'No active projects.' : 'No projects yet.'}</p>`;
+                }
+            };
+            
+            // Render all the project lists
+            renderList('freelancer-active-projects', freelancerActive.data, item => `${item.title}`);
+            renderList('freelancer-completed-projects', freelancerCompleted.data, item => `${item.title}`);
+            renderList('client-projects', clientProjects.data, item => `${item.title} <span class="status">(${item.status})</span>`);
+        };
+        
+        // --- Main Logic on Page Load ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            updateUserStatus(session);
+
+            // If a user is logged in, show dashboard on icon click
+            if (session) {
+                userProfileIcon.addEventListener('click', () => {
+                    fetchDashboardData(session.user.id); // Fetch fresh data each time
+                    dashboardOverlay.classList.add('visible');
+                });
+            }
+        });
+
+        // --- Event Listeners for Modal and Login ---
+        joinNowButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // This could open a login modal, but for now we'll do the redirect
+            supabaseClient.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: window.location.href }
+            });
+        });
+
+        closeDashboardButton.addEventListener('click', () => {
+            dashboardOverlay.classList.remove('visible');
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            window.location.reload(); // Reload the page to reset the state
+        });
+    </script>
+</body>
+</html>

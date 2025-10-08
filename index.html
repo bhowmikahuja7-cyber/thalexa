@@ -1069,6 +1069,69 @@
         .benefit {
             padding: 30px 20px;
         }
+        /* PASTE THIS INSIDE YOUR <style> TAG */
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Google button style from your login page */
+.google-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%; padding: 12px; background-color: #fff;
+    color: #444; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 16px; font-weight: 500; cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+.google-btn:hover { background-color: #f7f7f7; }
+.google-btn svg { margin-right: 12px; }
     }
 </style>
     <!-- Link your CSS -->
@@ -1081,7 +1144,7 @@
   <meta name="description" content="Thalexa - 0% commission for freelancer. No service charges for clients, guaranteed security amount for freelancers, and post-project support for clients.">
   <link rel="icon" href="https://i.ibb.co/KppHHbwP/thalexa-logo-final-removebg-preview.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1104,11 +1167,17 @@
                         <li><a href="https://www.thalexa.in/learn.html">Learn a Skill</a></li>
                     </ul>
                 </nav>
+                </div>
                 <div class="auth-buttons">
-    <a href="https://www.thalexa.in/joinnow.html" class="btn btn-primary">Join Now</a>
+    <a href="https://www.thalexa.in/login.html" class="btn btn-primary" id="join-now-btn">Sign/Log in</a>
+
+    <div id="user-profile-icon" style="display: none;">
+        <a href="/dashboard.html">
+            <img id="profile-pic" src="" alt="User Profile" style="width: 42px; height: 42px; border-radius: 50%; cursor: pointer; border: 2px solid #D4AF37;">
+        </a>
+    </div>
 </div>
-            </div>
-        </div>
+                </div>
     </header>
 
     <!-- Hero Section -->
@@ -1474,9 +1543,29 @@
             </div>
         </div>
     </footer>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // --- FAQ Toggling Functionality ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            if (question) {
+                question.addEventListener('click', () => {
+                    // Toggle the current item
+                    item.classList.toggle('active');
+                    
+                    // Close all other active items (optional - remove if you want multiple open)
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+
         // --- Search Bar Functionality ---
         const searchInput = document.querySelector('.search-bar input');
         const searchButton = document.querySelector('.search-bar button');
@@ -1484,11 +1573,9 @@
         if (searchButton) {
             searchButton.addEventListener('click', function() {
                 const searchValue = searchInput.value.trim();
-                // Note: The original code had a syntax error here. It should be a string.
                 if (searchValue) {
                     window.location.href = `https://www.thalexa.in/search.html?q=${encodeURIComponent(searchValue)}`;
                 } else {
-                    // Redirect even if empty, as per original button's onclick attribute
                     window.location.href = 'https://www.thalexa.in/search.html';
                 }
             });
@@ -1516,36 +1603,51 @@
             }
         });
 
-        // --- FAQ Toggling Functionality ---
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            if (question) {
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    // Close all other active items
-                    faqItems.forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                    });
-                    // Toggle the current item based on its previous state
-                    if (!isActive) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        });
-
         // --- Category Card Click Functionality ---
         const categoryCards = document.querySelectorAll('.category-card');
         categoryCards.forEach(card => {
             card.style.cursor = 'pointer';
             card.addEventListener('click', function() {
                 const categoryName = this.querySelector('h3').textContent;
-                // Note: The original code had a syntax error here. It should be a string.
                 window.location.href = `https://www.thalexa.in/search.html?category=${encodeURIComponent(categoryName)}`;
             });
         });
     });
 </script>
+<script>
+    // --- Initialize Supabase Client ---
+    const supabaseUrl = 'https://jpoyfkuujdlhfbsqmzkp.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impwb3lma3V1amRsaGZic3FtemtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MjkxMjAsImV4cCI6MjA3NTUwNTEyMH0.5HxSH9zeDVH3n8pDy6ivAHCxjsDkZhodL8B-TE7DH0c';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // --- Get HTML Elements from the Header ---
+    const joinNowButton = document.getElementById('join-now-btn');
+    const userProfileIcon = document.getElementById('user-profile-icon');
+    const profilePic = document.getElementById('profile-pic');
+
+    // --- Function to Check User Session and Update UI ---
+    const updateUserStatus = async () => {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+
+        if (session) {
+            // User IS logged in
+            joinNowButton.style.display = 'none'; // Hide "Join Now" button
+            userProfileIcon.style.display = 'flex'; // Show profile icon
+            
+            // Set the profile picture from Google data
+            if (session.user.user_metadata?.avatar_url) {
+                profilePic.src = session.user.user_metadata.avatar_url;
+            }
+        } else {
+            // User IS NOT logged in
+            joinNowButton.style.display = 'flex'; // Show "Join Now" button
+            userProfileIcon.style.display = 'none'; // Hide profile icon
+        }
+    };
+
+    // Run this function as soon as the page content has loaded
+    document.addEventListener('DOMContentLoaded', updateUserStatus);
+</script>
 </body>
 </html>
+
