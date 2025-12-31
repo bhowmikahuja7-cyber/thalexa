@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026, Ayushi! 🎉</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0b2e, #4a1e6e, #7d3c98);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .premium-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Premium Header */
+        .premium-header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .premium-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #ffd6e7;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .premium-header h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #e0c3fc;
+            margin-bottom: 30px;
+        }
+        
+        .name-highlight {
+            color: #ff9ec0;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-color: #ff6bb5;
+        }
+        
+        /* Countdown Timer */
+        .countdown-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .countdown-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #ffd6e7;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px 15px;
+            min-width: 140px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .countdown-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ff9ec0;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .countdown-label {
+            font-size: 1.2rem;
+            color: #e0c3fc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Message Section */
+        .message-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .message-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9ec0, #c86bfa);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: #ff9ec0;
+            margin-bottom: 20px;
+        }
+        
+        .message-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffd6e7;
+        }
+        
+        .message-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0c3fc;
+        }
+        
+        /* Special Message */
+        .special-message {
+            background: linear-gradient(135deg, rgba(255, 158, 192, 0.15), rgba(200, 107, 250, 0.15));
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-message h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffd6e7;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .special-message p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #f0e6ff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .heart {
+            color: #ff6bb5;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* New Year Celebration */
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .celebration-content {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #1a0b2e, #4a1e6e);
+            border-radius: 30px;
+            max-width: 800px;
+            border: 3px solid #ff9ec0;
+            box-shadow: 0 0 50px rgba(255, 158, 192, 0.7);
+            animation: celebrationPulse 2s infinite alternate;
+        }
+        
+        @keyframes celebrationPulse {
+            from { box-shadow: 0 0 30px rgba(255, 158, 192, 0.5); }
+            to { box-shadow: 0 0 80px rgba(255, 158, 192, 0.9); }
+        }
+        
+        .celebration-content h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: #ffd6e7;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+        
+        .celebration-content p {
+            font-size: 2rem;
+            color: #e0c3fc;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+        
+        .fireworks {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        
+        /* Premium Footer */
+        .premium-footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0c3fc;
+            font-size: 1.1rem;
+        }
+        
+        .footer-heart {
+            color: #ff6bb5;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        /* Background Elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .bg-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #ff9ec0, transparent);
+            top: 10%;
+            left: 5%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .bg-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #c86bfa, transparent);
+            bottom: 10%;
+            right: 5%;
+            animation: float 12s infinite ease-in-out reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .premium-header h1 {
+                font-size: 3.5rem;
+            }
+            
+            .countdown-container {
+                gap: 15px;
+            }
+            
+            .countdown-box {
+                min-width: 110px;
+                padding: 20px 10px;
+            }
+            
+            .countdown-value {
+                font-size: 2.8rem;
+            }
+            
+            .celebration-content h2 {
+                font-size: 3.5rem;
+            }
+            
+            .celebration-content p {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .premium-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .countdown-box {
+                min-width: 80px;
+                padding: 15px 5px;
+            }
+            
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.9rem;
+            }
+            
+            .message-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-element bg-1"></div>
+    <div class="bg-element bg-2"></div>
+    
+    <!-- Premium Container -->
+    <div class="premium-container">
+        <!-- Header -->
+        <header class="premium-header">
+            <h1>Happy New Year 2026</h1>
+            <h2>For my dearest <span class="name-highlight">Ayushi</span> ❤️</h2>
+            <p style="font-size: 1.3rem; color: #e0c3fc; max-width: 800px; margin: 0 auto;">
+                A new year, a new chapter, and another beautiful journey together. Here's to 365 new opportunities to cherish our friendship!
+            </p>
+        </header>
+        
+        <!-- Countdown Timer -->
+        <section class="countdown-section">
+            <h2 class="countdown-title">Countdown to New Year 2026</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <p style="margin-top: 30px; color: #e0c3fc; font-size: 1.2rem;">
+                Counting down to the moment we welcome 2026 together!
+            </p>
+        </section>
+        
+        <!-- Messages Section -->
+        <section class="message-section">
+            <div class="message-card">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>My Love For You</h3>
+                <p>Ayushi, you're not just my best friend, you're the sister I never had. Your presence in my life is a blessing I thank the universe for every single day. This bond we share is my most treasured possession.</p>
+            </div>
+            
+            <div class="message-card">
+                <div class="card-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>My Care For You</h3>
+                <p>Through every high and low, I'll always be there for you. Your happiness is my priority, your tears are my concern, and your dreams are my encouragement. I care for you more than words can express.</p>
+            </div>
+            
+            <div class="message-card">
+                <div class="card-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>My Wishes For You</h3>
+                <p>In 2026, I wish you endless joy, success in all your endeavors, love that fills your heart, and dreams that turn into reality. May this year bring you everything you've been hoping for and more!</p>
+            </div>
+        </section>
+        
+        <!-- Special Message -->
+        <section class="special-message">
+            <h3>A Special Message Just For You</h3>
+            <p>
+                Ayushi, as we step into 2026, I want you to know that you mean the world to me. 
+                Our friendship is the most beautiful gift I've ever received. 
+                No matter where life takes us, I'll always be here for you, cheering you on, laughing with you, and supporting you through everything. 
+                Here's to another year of unforgettable memories, shared secrets, and endless love. 
+                Happy New Year, my beautiful friend! <span class="heart">❤️</span>
+            </p>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="premium-footer">
+            <p>Made with <span class="footer-heart">❤️</span> for Ayushi | Wishing you the most amazing 2026!</p>
+            <p style="margin-top: 15px; font-size: 1rem;">This website will automatically celebrate when the clock strikes 12:00 AM IST on January 1st, 2026!</p>
+        </footer>
+    </div>
+    
+    <!-- New Year Celebration Overlay -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="celebration-content">
+            <h2>Happy New Year 2026!</h2>
+            <p>Ayushi, may this year bring you infinite joy, love, and success!</p>
+            <p>Thank you for being the most amazing friend. Here's to new beginnings!</p>
+            <div style="margin-top: 40px; font-size: 4rem; color: #ff9ec0;">
+                <i class="fas fa-glass-cheers"></i>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Countdown Timer for New Year 2026 (IST Timezone)
+        function updateCountdown() {
+            // Set the target date to Jan 1, 2026, 00:00 IST (which is 18:30 UTC on Dec 31, 2025)
+            const targetDate = new Date('December 31, 2025 18:30:00 GMT+00:00');
+            const now = new Date();
+            
+            // Calculate the difference in milliseconds
+            const diff = targetDate - now;
+            
+            // If the countdown is finished
+            if (diff <= 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                
+                // Trigger celebration
+                triggerCelebration();
+                return;
+            }
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Update the display
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            
+            // Check if it's exactly midnight IST
+            const istHours = (now.getUTCHours() + 5.5) % 24;
+            const istMinutes = (now.getUTCMinutes() + 30) % 60;
+            
+            if (days === 0 && hours === 0 && minutes === 0 && seconds <= 10) {
+                // If we're within 10 seconds of midnight, trigger celebration
+                triggerCelebration();
+            }
+        }
+        
+        // Celebration function
+        function triggerCelebration() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.style.display = 'flex';
+            
+            // Fade in
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+            }, 10);
+            
+            // Create fireworks
+            createFireworks();
+            
+            // Play celebration sound (optional, commented out by default)
+            // const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-new-year-horn-609.mp3');
+            // audio.volume = 0.3;
+            // audio.play().catch(e => console.log("Audio play failed:", e));
+        }
+        
+        // Create fireworks animation
+        function createFireworks() {
+            const colors = ['#ff9ec0', '#ff6bb5', '#c86bfa', '#e0c3fc', '#ffd6e7'];
+            const overlay = document.getElementById('celebrationOverlay');
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'fireworks';
+                    firework.style.left = `${Math.random() * 100}%`;
+                    firework.style.top = `${Math.random() * 100}%`;
+                    firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    firework.style.boxShadow = `0 0 20px ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    overlay.appendChild(firework);
+                    
+                    // Animate the firework
+                    const size = Math.random() * 20 + 10;
+                    firework.style.width = `${size}px`;
+                    firework.style.height = `${size}px`;
+                    
+                    // Explode animation
+                    const explodeSize = size * 10;
+                    const duration = Math.random() * 1000 + 500;
+                    
+                    firework.animate([
+                        { transform: 'scale(0)', opacity: 1 },
+                        { transform: `scale(${explodeSize})`, opacity: 0 }
+                    ], {
+                        duration: duration,
+                        easing: 'cubic-bezier(0, 0.9, 0.8, 1)'
+                    });
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        if (firework.parentNode) {
+                            firework.parentNode.removeChild(firework);
+                        }
+                    }, duration);
+                }, i * 100);
+            }
+            
+            // Continue creating fireworks every 2 seconds
+            setInterval(() => {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const firework = document.createElement('div');
+                        firework.className = 'fireworks';
+                        firework.style.left = `${Math.random() * 100}%`;
+                        firework.style.top = `${Math.random() * 100}%`;
+                        firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                        firework.style.boxShadow = `0 0 20px ${colors[Math.floor(Math.random() * colors.length)]}`;
+                        overlay.appendChild(firework);
+                        
+                        const size = Math.random() * 15 + 5;
+                        firework.style.width = `${size}px`;
+                        firework.style.height = `${size}px`;
+                        
+                        const explodeSize = size * 8;
+                        const duration = Math.random() * 800 + 400;
+                        
+                        firework.animate([
+                            { transform: 'scale(0)', opacity: 1 },
+                            { transform: `scale(${explodeSize})`, opacity: 0 }
+                        ], {
+                            duration: duration,
+                            easing: 'cubic-bezier(0, 0.9, 0.8, 1)'
+                        });
+                        
+                        setTimeout(() => {
+                            if (firework.parentNode) {
+                                firework.parentNode.removeChild(firework);
+                            }
+                        }, duration);
+                    }, i * 50);
+                }
+            }, 2000);
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Add some interactive effects to the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to name highlight
+            const nameHighlight = document.querySelector('.name-highlight');
+            nameHighlight.addEventListener('mouseover', function() {
+                this.style.textShadow = '0 0 15px #ff6bb5';
+            });
+            
+            nameHighlight.addEventListener('mouseout', function() {
+                this.style.textShadow = 'none';
+            });
+            
+            // Add click effect to countdown boxes
+            const countdownBoxes = document.querySelectorAll('.countdown-box');
+            countdownBoxes.forEach(box => {
+                box.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Add floating effect to message cards on scroll
+            const messageCards = document.querySelectorAll('.message-card');
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                
+                messageCards.forEach((card, index) => {
+                    const speed = 0.5;
+                    const yPos = -(scrollPosition * speed) + (index * 50);
+                    card.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
